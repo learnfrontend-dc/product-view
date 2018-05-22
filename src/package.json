@@ -1,0 +1,7 @@
+{
+  "name": "pvmf2",
+  "author":"learnfrontend dc",
+  "version": "0.0.2",
+  "license": "MIT",
+  "module" : "product-view.js"
+}
