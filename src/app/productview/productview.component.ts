@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewEncapsulation, TemplateRef, ViewChild, ElementRef, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { BrowserModule, DomSanitizer } from '@angular/platform-browser'
 
@@ -10,38 +10,74 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser'
 })
 export class ProductViewComponent {
  
-    public productlist : any[] = [
+  public productlist : any[] = [
     {
       productname : 'JBL Flip 4',
       code : 'cat1-0001',
       price : 18.01,
-      rating : '4'
+      cartprice : 0,
+      available : 10,
+      qty : 0
     }, {
       productname : 'Bose Sound Link',
       code : 'cat1-0010',
       price : 129.05,
-      rating : '5'
+      cartprice : 0,
+      available : 9,
+      qty : 0
     }, {
       productname : 'AB Portable',
       code : 'cat1-0008',
       price : 19.78,
-      rating : '3'
+      cartprice : 0,
+      available : 11,
+      qty : 0
     }, {
       productname : 'AE-9 Portable',
       code : 'cat1-0011',
       price : 299.99,
-      rating : '3'
+      cartprice : 0,
+      available : 8,
+      qty : 0
     }, {
       productname : 'JBL Pulse 3',
       code : 'cat1-0009',
       price : 23.05,
-      rating : '4'
+      cartprice : 0,
+      available : 10,
+      qty : 0
     }
   ];
   constructor() {
-    
   }
-   public addToCart(product) {
-    //window.frames[0].postMessage(product, '*');
+
+
+  
+  public addToCart(product) {
+    if(product.qty === product.available) {
+      console.log('Product is out of Stock.');
+    } else {
+      product.qty = product.qty + 1;
+      const productcartele = document.querySelector('product-cart');
+      if(productcartele != null) {
+        productcartele['message']=product;
+      }
+    }
+   }
+  
+  
+  @Input()
+  set message(message: string) {
+    let productObj = message;
+    for(let product of this.productlist) {
+      if(product.productname === productObj['productname']) {
+        product.qty= productObj['qty'];
+        break;
+      }
+    }
+  
   }
+  get message(): string { return this._message; }
+  _message: string;
+
 }

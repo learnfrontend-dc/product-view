@@ -1,7 +1,9 @@
 {
-  "name": "pvmf2",
-  "author":"learnfrontend dc",
-  "version": "0.0.2",
+  "name": "mf-pv",
+  "author":"lionel robbin",
+  "version": "0.0.1",
   "license": "MIT",
-  "module" : "product-view.js"
+  "main": "bundles/mf-pv.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts"
 }
